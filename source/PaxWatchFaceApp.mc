@@ -16,8 +16,12 @@ class PaxWatchFaceApp extends Application.AppBase {
     function onStop(state as Dictionary?) as Void {
     }
 
-    // Return the initial view of your application here
-    function getInitialView() as [Views] or [Views, InputDelegates] {
+    // Triggered when user modifies settings via Garmin Connect or Simulator
+    function onSettingsChanged() as Void {
+        WatchUi.requestUpdate(); // Forces the watch face to redraw with new settings
+    }
+
+    function getInitialView() as [WatchUi.Views] or [WatchUi.Views, WatchUi.InputDelegates] {
         return [ new PaxWatchFaceView() ];
     }
 

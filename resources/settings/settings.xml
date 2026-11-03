@@ -1,0 +1,12 @@
+<settings>
+    <setting propertyKey="@Properties.Use24Hour" title="@Strings.Use24HourTime">
+        <settingConfig type="boolean"/>
+    </setting>
+    
+    <setting propertyKey="@Properties.DateFormat" title="@Strings.DateFormatTitle">
+        <settingConfig type="list">
+            <listEntry value="0">Day_Week Day Month (TUE 3 NOV)</listEntry>
+            <listEntry value="1">Day Month (3 NOV)</listEntry>
+        </settingConfig>
+    </setting>
+</settings>

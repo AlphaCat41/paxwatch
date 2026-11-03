@@ -11,9 +11,6 @@ class PaxWatchFaceView extends WatchUi.WatchFace {
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
-        setLayout(Rez.Layouts.WatchFace(dc));
-        // Load the font resource defined in fonts.xml
-
     }
 
     // Called when this View is brought to the foreground. Restore

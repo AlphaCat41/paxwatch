@@ -1,0 +1,4 @@
+<properties>
+    <property id="Use24Hour" type="boolean">true</property>
+    <property id="DateFormat" type="number">0</property>
+</properties>
