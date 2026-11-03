@@ -8,12 +8,14 @@ import Toybox.Application;
 module DateClockUtils {
     // Returns a formatted time string (e.g., "08:45" or "20:45")
     var ampm = "";
+    var is24Hour = null;
+
     function getFormattedTime() as String {
         var clockTime = System.getClockTime();
         var hours = clockTime.hour;
 
         // Read user preference from settings (defaults to true if null)
-        var is24Hour = Application.Properties.getValue("Use24Hour");
+        is24Hour = Application.Properties.getValue("Use24Hour");
         
         // Respect system 12-hour / 24-hour setting
         if (!is24Hour) {
@@ -128,14 +130,16 @@ module DateClockUtils {
         var ampmHeight = ampm_dimensions[1];  // Height in pixels
 
         // draw am/pm
-        Draw.drawText(
-            dc,
-            ox + (timeWidth / 2) + (ampmWidth / 2),
-            oy - (ampmHeight / 2),
-            Graphics.FONT_XTINY, 
-            Graphics.COLOR_LT_GRAY,
-            Graphics.COLOR_TRANSPARENT,
-            ampm
-        );
+        if (!is24Hour) {
+            Draw.drawText(
+                dc,
+                ox + (timeWidth / 2) + (ampmWidth / 2),
+                oy - (ampmHeight / 2),
+                Graphics.FONT_XTINY, 
+                Graphics.COLOR_LT_GRAY,
+                Graphics.COLOR_TRANSPARENT,
+                ampm
+            );
+        }
     }
 }
