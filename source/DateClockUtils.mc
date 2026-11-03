@@ -6,8 +6,8 @@ import Toybox.Graphics;
 import Toybox.Application;
 
 module DateClockUtils {
-
     // Returns a formatted time string (e.g., "08:45" or "20:45")
+    var ampm = "";
     function getFormattedTime() as String {
         var clockTime = System.getClockTime();
         var hours = clockTime.hour;
@@ -17,6 +17,7 @@ module DateClockUtils {
         
         // Respect system 12-hour / 24-hour setting
         if (!is24Hour) {
+            ampm = (hours >= 12) ? "PM" : "AM";
             hours = hours % 12;
             if (hours == 0) {
                 hours = 12;
@@ -26,6 +27,13 @@ module DateClockUtils {
         return Lang.format("$1$:$2$", [
             hours.format("%02d"),
             clockTime.min.format("%02d")
+        ]);
+    }
+    function getSecTime() as String {
+        var clockTime = System.getClockTime();
+      
+        return Lang.format("$1$", [
+            clockTime.sec.format("%02d")
         ]);
     }
 
@@ -58,7 +66,7 @@ module DateClockUtils {
         return dateString.toUpper();
     }
 
-   function drawDateClock(
+    function drawDateClock(
         dc as Graphics.Dc,
         ox as Numeric,
         oy as Numeric
@@ -68,6 +76,9 @@ module DateClockUtils {
 
         var formatted_date_Str = getFormattedDate();
         var date_font_size = Graphics.FONT_TINY;
+
+        var sec_Str = getSecTime();
+        var sec_font_size = Graphics.FONT_XTINY;
 
         // Draw the time
         Draw.drawText(
@@ -96,6 +107,35 @@ module DateClockUtils {
             Graphics.COLOR_LT_GRAY,
             Graphics.COLOR_TRANSPARENT,
             getFormattedDate()
+        );
+
+        var sec_dimensions = dc.getTextDimensions(sec_Str, sec_font_size);
+        var secWidth = sec_dimensions[0];   // Width in pixels
+        var secHeight = sec_dimensions[1];  // Height in pixels
+        
+        Draw.drawText(
+            dc,
+            ox + (timeWidth / 2) + (secWidth / 2),
+            oy + (secHeight / 2),
+            Graphics.FONT_XTINY, 
+            Graphics.COLOR_LT_GRAY,
+            Graphics.COLOR_TRANSPARENT,
+            getSecTime()
+        );
+
+        var ampm_dimensions = dc.getTextDimensions(ampm, sec_font_size);
+        var ampmWidth = ampm_dimensions[0];   // Width in pixels
+        var ampmHeight = ampm_dimensions[1];  // Height in pixels
+
+        // draw am/pm
+        Draw.drawText(
+            dc,
+            ox + (timeWidth / 2) + (ampmWidth / 2),
+            oy - (ampmHeight / 2),
+            Graphics.FONT_XTINY, 
+            Graphics.COLOR_LT_GRAY,
+            Graphics.COLOR_TRANSPARENT,
+            ampm
         );
     }
 }
