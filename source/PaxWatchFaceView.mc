@@ -26,10 +26,10 @@ class PaxWatchFaceView extends WatchUi.WatchFace {
         dc.clear();
         var width = dc.getWidth();
         var height = dc.getHeight();
+        
+        Layout.main(dc, width, height);
 
-        var date_clock_x = width / 2;
-        var date_clock_y = height / 2;
-        DateClockUtils.drawDateClock(dc, date_clock_x, date_clock_y);
+        
         
     }
 

@@ -9,6 +9,8 @@ module DateClockUtils {
     // Returns a formatted time string (e.g., "08:45" or "20:45")
     var ampm = "";
     var is24Hour = null;
+    var total_width = 0;
+    var total_height = 0;
 
     function getFormattedTime() as String {
         var clockTime = System.getClockTime();
@@ -77,7 +79,7 @@ module DateClockUtils {
         var time_font_size = Graphics.FONT_NUMBER_MILD;
 
         var formatted_date_Str = getFormattedDate();
-        var date_font_size = Graphics.FONT_TINY;
+        var date_font_size = Graphics.FONT_XTINY;
 
         var sec_Str = getSecTime();
         var sec_font_size = Graphics.FONT_XTINY;
@@ -98,7 +100,7 @@ module DateClockUtils {
 
         var date_dimensions = dc.getTextDimensions(formatted_date_Str, date_font_size);
         var dateWidth = date_dimensions[0];   // Width in pixels
-        // var dateHeight = date_dimensions[1];  // Height in pixels
+        var dateHeight = date_dimensions[1];  // Height in pixels
 
         // Draw the date (Using FONT_MEDIUM for broad device compatibility)
         Draw.drawText(
@@ -131,15 +133,33 @@ module DateClockUtils {
 
         // draw am/pm
         if (!is24Hour) {
+            var x = ox + (timeWidth / 2) + (ampmWidth / 2);
+            var y = oy - (ampmHeight / 2);
+
+            var boxX = x - (ampmWidth / 2);
+            var boxY = y - (ampmHeight / 2);
+            
+            Draw.drawSquare(dc, boxX, boxY, ampmWidth, ampmHeight);
             Draw.drawText(
                 dc,
-                ox + (timeWidth / 2) + (ampmWidth / 2),
-                oy - (ampmHeight / 2),
+                x,
+                y,
                 Graphics.FONT_XTINY, 
-                Graphics.COLOR_LT_GRAY,
+                Graphics.COLOR_BLACK,
                 Graphics.COLOR_TRANSPARENT,
                 ampm
             );
         }
+
+        total_width = timeWidth + (ampmWidth > secWidth? ampmWidth : secWidth);
+        total_height = timeHeight + dateHeight;
+    }
+
+    function getWidth() as Number {
+        return total_width;
+    }
+
+     function getHeight() as Number {
+        return total_height;
     }
 }
