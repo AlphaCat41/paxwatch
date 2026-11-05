@@ -2,4 +2,6 @@
     <string id="AppName">PaxWatchFace</string>
     <string id="Use24HourTime">Use 24-Hour Time</string>
     <string id="DateFormatTitle">Date Layout</string>
+    <string id="ClockColor">Clock Color</string>
+    <string id="DateColor">Date Color</string>
 </strings>

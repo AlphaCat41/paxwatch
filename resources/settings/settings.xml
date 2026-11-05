@@ -9,4 +9,18 @@
             <listEntry value="1">Day Month (3 NOV)</listEntry>
         </settingConfig>
     </setting>
+    <setting propertyKey="@Properties.ClockColor" title="@Strings.ClockColor">
+        <settingConfig type="list">
+            <listEntry value="0xFFFFFF">White</listEntry>
+            <listEntry value="0xFF5733">Orange-Red</listEntry>
+            <listEntry value="0x33B5E5">Blue</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.DateColor" title="@Strings.DateColor">
+        <settingConfig type="list">
+            <listEntry value="0xFFFFFF">White</listEntry>
+            <listEntry value="0xFF5733">Orange-Red</listEntry>
+            <listEntry value="0x33B5E5">Blue</listEntry>
+        </settingConfig>
+    </setting>
 </settings>

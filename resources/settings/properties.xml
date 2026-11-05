@@ -1,4 +1,6 @@
 <properties>
     <property id="Use24Hour" type="boolean">true</property>
     <property id="DateFormat" type="number">0</property>
+    <property id="ClockColor" type="number">#FF5733</property>
+    <property id="DateColor" type="number">#FF5733</property>
 </properties>

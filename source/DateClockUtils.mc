@@ -84,13 +84,15 @@ module DateClockUtils {
         var sec_Str = getSecTime();
         var sec_font_size = Graphics.FONT_XTINY;
 
+        var clockColor = Application.Properties.getValue("ClockColor");
+     
         // Draw the time
         Draw.drawText(
             dc,
             ox,
             oy,
             time_font_size,
-            Graphics.COLOR_WHITE,
+            clockColor,
             Graphics.COLOR_TRANSPARENT,
             getFormattedTime()
         );
@@ -102,13 +104,14 @@ module DateClockUtils {
         var dateWidth = date_dimensions[0];   // Width in pixels
         var dateHeight = date_dimensions[1];  // Height in pixels
 
+        var dateColor = Application.Properties.getValue("DateColor");
         // Draw the date (Using FONT_MEDIUM for broad device compatibility)
         Draw.drawText(
             dc,
             ox + (timeWidth / 2) - (dateWidth / 2),
             oy - (timeHeight / 2),
             date_font_size, 
-            Graphics.COLOR_LT_GRAY,
+            dateColor,
             Graphics.COLOR_TRANSPARENT,
             getFormattedDate()
         );
@@ -122,7 +125,7 @@ module DateClockUtils {
             ox + (timeWidth / 2) + (secWidth / 2),
             oy + (secHeight / 2),
             Graphics.FONT_XTINY, 
-            Graphics.COLOR_LT_GRAY,
+            Graphics.COLOR_WHITE,
             Graphics.COLOR_TRANSPARENT,
             getSecTime()
         );

@@ -6,6 +6,7 @@ import Toybox.Graphics;
 import Toybox.Application;
 
 module DataUtils {
+    
     function getBatteryPercentage() as Numeric {
         var stats = System.getSystemStats();
         if (stats != null && stats.battery != null) {
