@@ -27,7 +27,8 @@ class PaxWatchFaceView extends WatchUi.WatchFace {
         var width = dc.getWidth();
         var height = dc.getHeight();
         
-        Layout.main(dc, width, height);
+        Layout.Top(dc, width, height);
+        Layout.Middle(dc, width, height);
 
         
         

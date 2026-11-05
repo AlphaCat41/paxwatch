@@ -26,7 +26,9 @@ module Draw {
         centerX as Numeric,
         centerY as Numeric,
         radius as Numeric,
-        data as Numeric
+        data as String,
+        lowerData as Numeric,
+        lowerDataColor as Numeric
     ) as Void {
         
         // 1. Draw Background Track (Full or partial gray circle)
@@ -43,12 +45,12 @@ module Draw {
 
         // 2. Calculate Sweep Angle based on Battery Percentage (0 - 100%)
         // Map 0-100% to 0-360 degrees (or a partial arc if you prefer)
-        var sweepAngle = (data / 100.0) * 270.0;
+        var sweepAngle = (data.toNumber() / 100.0) * 270.0;
         
         // Choose color based on level (e.g., Red if low, White/Green if normal)
         var gaugeColor = Graphics.COLOR_BLUE;
-        if (data <= 20) {
-            gaugeColor = Graphics.COLOR_RED;
+        if (data.toNumber() <= lowerData) {
+            gaugeColor = lowerDataColor;
         }
 
         // 3. Draw Active Progress Arc
@@ -65,7 +67,7 @@ module Draw {
         );
 
         // 4. Draw Percentage Text Inside the Circle
-        var textString = data.format("%d") + "%";
+        var textString = data + "%";
         dc.drawText(
             centerX,
             centerY,
